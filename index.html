@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <title>SplitDraw | Player</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script language="JavaScript" type="module" src="player.js" defer></script>
+  </head>
+
+  <body>
+    <audio id="lofi" src="assets/Lofi.wav" preload="auto"></audio>
+    <div id="loading-screen">
+      <h1 class="text-container">Willkommen bei SplitDraw</h1>
+      <p>Bereit zum Start?</p>
+
+      <div id="spieleranzahl"></div>
+
+      <div id="nameInput-container">
+        <input
+          type="text"
+          id="userInput"
+          placeholder="Gib deinen Namen ein..."
+        />
+        <button id="submitButton">Registrieren</button>
+      </div>
+    </div>
+
+    <div id="info-container"></div>
+
+    <div id="auswertung-container" style="display: none">
+      <div id="richtig-container"></div>
+    </div>
+    <div id="myvotes-container"></div>
+
+    <div id="question-container" style="display: none"></div>
+    <div id="answer-container" style="display: none">
+      <div class="answer" data-option="a">
+        A:
+        <div class="text"><div class="slider"></div></div>
+      </div>
+      <div class="answer" data-option="b">
+        B:
+        <div class="text"><div class="slider"></div></div>
+      </div>
+      <div class="answer" data-option="c">
+        C:
+        <div class="text"><div class="slider"></div></div>
+      </div>
+      <div class="answer" data-option="d">
+        D:
+        <div class="text"><div class="slider"></div></div>
+      </div>
+    </div>
+
+    <div id="timer-container" style="display: none">
+      <div id="timer-bar"></div>
+    </div>
+
+    <div id="canvas-container" style="display: none">
+      <div id="innerCanvas-container">
+        <canvas id="canvas1"></canvas>
+        <canvas id="canvas2"></canvas>
+        <canvas id="canvas3"></canvas>
+        <canvas id="canvas4"></canvas>
+      </div>
+    </div>
+
+    <div id="clearCanvas-container" style="display: none">
+      <button id="clearCanvasButton">Clear</button>
+    </div>
+
+    <div id="zuschauerEingabe-container" style="display: none">
+      <input
+        type="text"
+        id="zuschauerInput"
+        placeholder="Gib das Wort ein..."
+      />
+      <button id="zuschauerButton">Raten</button>
+    </div>
+
+    <a-scene word-result-handler>
+      <a-sky src="assets/Polarlicht.jpg" rotation="0 -90 0"></a-sky>
+
+      <a-entity snow-generator></a-entity>
+
+      <a-entity position="23.041 -0.380 9.037" rotation="0 -20 270">
+        <a-entity
+          light="type: spot; color: #fff176; intensity: 10; angle: 20; penumbra: 0.5; distance: 40"
+          animation="property: light.intensity; from: 7; to: 1; dur: 1500; dir: alternate; loop: true"
+        ></a-entity>
+        <a-box
+          color="#ffffff"
+          width="1"
+          height="1"
+          depth="1"
+          position="0 -1.5 0"
+          material="shader: standard; transparent: true; emissive: #ffffff; emissiveIntensity: 20; opacity: 1"
+          animation="property: material.emissiveIntensity; from: 1; to: 0; dur: 2000; dir: alternate; loop: true"
+        ></a-box>
+      </a-entity>
+
+      <a-entity position="30.041 -0.534 7.860" rotation="0 -20 270">
+        <a-entity
+          light="type: spot; color: #fff176; intensity: 10; angle: 20; penumbra: 0.5; distance: 40"
+          animation="property: light.intensity; from: 7; to: 1; dur: 1500; dir: alternate; loop: true"
+        ></a-entity>
+        <a-box
+          color="#ffffff"
+          width="1"
+          height="1"
+          depth="1"
+          position="0 -1.5 0"
+          material="shader: standard; transparent: true; emissive: #ffffff; emissiveIntensity: 20; opacity: 1"
+          animation="property: material.emissiveIntensity; from: 1; to: 0; dur: 2000; dir: alternate; loop: true"
+        ></a-box>
+      </a-entity>
+
+      <!-- <a-entity camera look-controls position="0 1.6 0" id="camera"></a-entity> -->
+      <a-entity camera position="0 1.6 0" id="camera">
+        <a-entity
+          cursor="rayOrigin: mouse"
+          material="color: cyan; shader: flat"
+          position="0 0 -1"
+        ></a-entity>
+      </a-entity>
+    </a-scene>
+  </body>
+</html>

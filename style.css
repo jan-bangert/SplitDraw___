@@ -1,0 +1,353 @@
+html {
+  overscroll-behavior: none;
+  touch-action: none;
+}
+
+body {
+  position: fixed;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding: 40px;
+  margin: 0;
+  font-family: "Avenir Next", Helvetica, sans-serif;
+  background-color: #000;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.light {
+  font-weight: 100;
+}
+
+.small {
+  font-size: 0.8em;
+}
+
+body.disconnected {
+  opacity: 0.333;
+}
+
+#question-container {
+  position: absolute;
+  z-index: 100;
+  position: relative;
+  box-sizing: border-box;
+  width: auto;
+  margin: 20px 0 10px 0;
+  text-align: left;
+  font-size: 1.4em;
+  font-weight: 500;
+  line-height: 1.2em;
+  color: #fff;
+}
+
+#answer-container {
+  position: relative;
+  box-sizing: border-box;
+  width: auto;
+  margin: 0;
+  padding: 5px 20px;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 1.2em;
+  line-height: 1.2em;
+  color: #fff;
+  z-index: 100;
+}
+
+#auswertung-container {
+  position: absolute;
+  z-index: 100;
+  position: relative;
+  box-sizing: border-box;
+  width: auto;
+  margin: 0;
+  padding: 5px 20px;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 1.2em;
+  line-height: 1.2em;
+  color: #fff;
+}
+
+#myvotes-container {
+  position: relative;
+  z-index: 100;
+  box-sizing: border-box;
+  width: auto;
+  margin: 0;
+  padding: 5px 20px;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 1.2em;
+  line-height: 1.2em;
+  color: #fff;
+}
+
+#zuschauer-container {
+  position: relative;
+  z-index: 100;
+  box-sizing: border-box;
+  width: auto;
+  margin: 0;
+  padding: 5px 20px;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 1.2em;
+  line-height: 1.2em;
+  color: #fff;
+}
+
+#answer-container.master {
+  width: 100%;
+}
+
+div.answer {
+  position: relative;
+  box-sizing: border-box;
+  width: auto;
+  height: auto;
+  padding: 5px;
+  margin: 5px 0;
+  vertical-align: top;
+}
+
+div.answer:hover {
+  background-color: #007f7f;
+}
+
+div.answer.selected {
+  background-color: #004f4f;
+}
+
+div.answer.correct {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #fff;
+}
+
+div.answer.wrong {
+  opacity: 0.5;
+}
+
+div.answer div {
+  display: inline-block;
+}
+
+div.answer div.slider {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0%;
+  height: 100%;
+  background-color: #007f7f;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#info-container {
+  position: absolute;
+  box-sizing: border-box;
+  right: 40px;
+  bottom: 4em;
+  width: auto;
+  margin: 0;
+  padding-left: 10px;
+  text-align: left;
+  font-size: 0.8em;
+  color: #fff;
+  z-index: 100;
+}
+
+.button {
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  left: 20px;
+  height: 2.5em;
+  padding: 0 0.5em;
+  margin-right: 10px;
+  font-size: 0.8em;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  color: #fff;
+  text-align: center;
+  line-height: 2.2em;
+}
+
+.button:active {
+  background-color: #777;
+}
+
+#correct-answer.button {
+  display: none;
+}
+
+#correct-answer.button.show {
+  display: inline-block;
+}
+
+#timer-container {
+  position: absolute;
+  z-index: 100;
+  width: 100%;
+  height: 12px;
+  background-color: #ddd;
+  border-radius: 0px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+#timer-bar {
+  height: 100%;
+  width: 0%;
+  background-color: cyan;
+  transition: zeichnenTimeout width linear;
+}
+
+#zuschauerEingabe-container {
+  position: absolute;
+  box-sizing: border-box;
+  right: 25%;
+  bottom: 8%;
+  width: auto;
+  margin: 0;
+  padding-left: 10px;
+  text-align: left;
+  font-size: 0.8em;
+  color: #fff;
+  z-index: 100;
+}
+
+#button-container {
+  position: absolute;
+  z-index: 100;
+  box-sizing: border-box;
+  bottom: 2em;
+}
+
+#clearCanvas-container {
+  position: fixed;
+  top: calc(50% + 35% + 10px); /* 50% top + Hälfte Höhe + 10px Abstand */
+  left: calc(50% - -22.5%); /* 50% left - Hälfte Breite */
+  transform: translate(0, 0);
+  z-index: 100;
+  text-align: left; /* linke Ausrichtung des Inhalts */
+  /* falls Breite benötigt */
+  width: 200px; /* oder passend anpassen */
+}
+
+#canvas-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 55vw;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+#innerCanvas-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0vw;
+  width: 100%;
+  height: 100%;
+  padding: 2vw;
+  background: transparent;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+#canvas-container canvas {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  aspect-ratio: 4 / 1; /* macht das Canvas quadratisch */
+  border: 2px solid white;
+  background-color: rgba(255, 255, 255, 0.15);
+  box-sizing: border-box;
+}
+
+/* Vollbild-Ladebildschirm */
+#loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 18vh;
+  z-index: 9999;
+}
+
+/* Titel weiter oben */
+#loading-screen .text-container {
+  margin-bottom: 5vh;
+  font-size: 2em;
+  text-align: center;
+}
+
+/* Alle weiteren Elemente darunter */
+#loading-screen p,
+#loading-screen #spieleranzahl,
+#loading-screen #nameInput-container {
+  margin-bottom: 2vh;
+  text-align: center;
+}
+
+/* Nameingabe + Button */
+/* Container */
+#nameInput-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10vh; /* verkleinert den Abstand nach oben */
+  gap: 0.5vh; /* kleinerer Abstand zwischen Input und Button */
+}
+
+/* Input-Feld */
+#nameInput-container input {
+  height: 2em; /* Höhe schmaler machen */
+  padding: 0.3em 0.5em;
+  font-size: 1em;
+  box-sizing: border-box;
+  border-radius: 4px; /* optional für bessere Optik */
+}
+
+#userInput {
+  padding: 0.5em;
+  font-size: 1em;
+}
+
+#submitButton {
+  height: 1.7em;
+  padding: 0 1.5em;
+  font-size: 1em;
+  cursor: pointer;
+  box-sizing: border-box;
+  border-radius: 4px;
+  margin-top: 0.4em;
+
+  display: flex;
+  align-items: center; /* vertikal mittig */
+  justify-content: center;
+  line-height: normal;
+}
